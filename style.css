@@ -1,0 +1,646 @@
+/* ==============================================
+   Global Variables - المتغيرات الأساسية لهوية "روح" (مع التدرج اللوني)
+   ============================================== */
+:root {
+    /* Palette from Instagram: Beige/Blue & Teal Green */
+    --brand-teal: #4DB6AC;      /* اللون الأخضر التركوازي من اللوجو */
+    --brand-teal-light: #80CBC4; /* درجة أفتح للتدرج */
+    --brand-teal-dark: #00695C; /* درجة أغمق للتأكيد والعناوين */
+    --brand-beige-bg: #f0f5f5;  /* اللون البيج/الأزرق الفاتح جداً للخلفيات المميزة */
+    --brand-dark-text: #37474F; /* لون رمادي داكن مائل للزرقة للنصوص */
+    
+    /* The NEW Gradient! */
+    --brand-gradient: linear-gradient(135deg, var(--brand-teal), var(--brand-teal-light));
+
+    /* General UI Colors */
+    --background-color: #FFFFFF;
+    --light-gray-bg: #f8f9fa;
+    --text-color: #333333;
+    --border-color: #e5e7eb;
+    --heart-color: #E57373;
+}
+
+/* ==============================================
+   Base & Typography - الإعدادات الأساسية والخطوط
+   ============================================== */
+body {
+    font-family: 'Tajawal', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.8;
+    direction: rtl;
+    scroll-behavior: smooth;
+}
+
+/* ==============================================
+   Navbar - الشريط العلوي
+   ============================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--background-color);
+    border-bottom: 1px solid var(--border-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: box-shadow 0.3s ease;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--brand-dark-text);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--brand-dark-text);
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+    padding-bottom: 5px;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    right: 0;
+    background: var(--brand-gradient); /* <-- Gradient Added */
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--brand-teal-dark);
+}
+
+/* ==============================================
+   Hero Section - القسم الترحيبي (مع حركة الدخول)
+   ============================================== */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    gap: 40px;
+    background-color: var(--light-gray-bg);
+    min-height: 80vh;
+    overflow: hidden; /* To contain animations */
+}
+
+/* Entry Animations */
+@keyframes slideInUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.hero-text {
+    animation: slideInUp 0.8s ease-out forwards;
+}
+
+.hero-image {
+    animation: fadeIn 1s ease-out 0.4s forwards;
+    opacity: 0; /* Start hidden */
+}
+
+.hero-text h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    color: var(--brand-dark-text);
+}
+
+.hero-text p {
+    font-size: 1.25rem;
+    color: #607D8B;
+    margin-bottom: 2.5rem;
+}
+
+.hero-image img {
+    max-width: 400px;
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% { transform: translatey(0px); }
+	50% { transform: translatey(-20px); }
+	100% { transform: translatey(0px); }
+}
+
+/* ==============================================
+   Buttons - الأزرار (مع التدرج والحركة)
+   ============================================== */
+.btn {
+    padding: 12px 28px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.btn-primary {
+    background: var(--brand-gradient); /* <-- Gradient Added */
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(77, 182, 172, 0.3); /* Shadow with brand color */
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--brand-teal-dark);
+    border-color: var(--brand-teal);
+}
+
+.btn-secondary:hover {
+    background-color: var(--brand-teal);
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ==============================================
+   Content Sections & Cards - أقسام المحتوى والبطاقات (مع حركة التحويم)
+   ============================================== */
+.content-section {
+    padding: 80px 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.content-section h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    color: var(--brand-dark-text);
+}
+
+.content-section h2 i {
+    background: var(--brand-gradient); /* <-- Gradient Added to Icons */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subsection-title {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-bottom: 30px;
+    color: var(--brand-teal-dark);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* <-- Animation Added */
+    border: 1px solid var(--border-color);
+}
+
+.card:hover {
+    transform: translateY(-10px); /* <-- Animation Added */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1); /* <-- Animation Added */
+}
+
+.card h3, .card h4 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--brand-teal-dark);
+}
+
+.card .bx {
+    font-size: 1.8rem;
+}
+
+/* Special Card for "Amanah" message */
+.special-card {
+    background-color: var(--brand-beige-bg);
+    border-left: 5px solid var(--brand-teal);
+    color: var(--brand-dark-text);
+}
+
+.special-card h3 {
+    color: var(--brand-teal-dark);
+}
+
+.special-card .bxs-heart {
+    color: var(--heart-color);
+}
+
+/* Accountability Card */
+.accountability-card {
+    background-color: #e0f2f1;
+    border-left: 5px solid var(--brand-teal-dark);
+    margin-top: 30px;
+    padding: 25px;
+}
+.accountability-card h3 {
+    color: var(--brand-teal-dark);
+}
+.accountability-card ul {
+    list-style: none; padding-right: 0;
+}
+.accountability-card li {
+    padding: 5px 0;
+}
+
+/* ==============================================
+   Collapsible Sections - الأقسام القابلة للطي
+   ============================================== */
+.collapsible {
+    background-color: var(--background-color);
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.collapsible-header {
+    background-color: transparent;
+    color: var(--brand-dark-text);
+    cursor: pointer;
+    padding: 20px;
+    width: 100%;
+    border: none;
+    text-align: right;
+    outline: none;
+    font-size: 1.2rem;
+    font-weight: 700;
+    font-family: 'Tajawal', sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.collapsible-header .bx-chevron-down {
+    font-size: 1.8rem;
+    color: var(--brand-teal);
+    transition: transform 0.3s ease;
+}
+
+.collapsible-header.active .bx-chevron-down {
+    transform: rotate(180deg);
+}
+
+.collapsible-content {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out;
+    background-color: #fafafa;
+}
+
+.collapsible-content ul {
+    list-style: none;
+    padding-right: 0;
+}
+
+.collapsible-content li {
+    padding: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ==============================================
+   Tables & Video - الجداول والفيديو
+   ============================================== */
+.table-container {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: right;
+    border: 1px solid var(--border-color);
+}
+
+thead {
+    background-color: var(--brand-beige-bg);
+    font-weight: 700;
+    color: var(--brand-teal-dark);
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fdfdfd;
+}
+
+.video-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ==============================================
+   Footer - الجزء السفلي
+   ============================================== */
+footer {
+    text-align: center;
+    padding: 25px;
+    background-color: var(--brand-dark-text);
+    color: #e0f2f1;
+}
+
+footer .bxs-heart {
+    color: var(--heart-color);
+    vertical-align: middle;
+}
+
+/* ==============================================
+   Animations & Responsive - الحركات والتجاوب
+   ============================================== */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px;
+    background-color: var(--text-color);
+    transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    .hero { flex-direction: column-reverse; text-align: center; }
+    .hero-text h1 { font-size: 2.5rem; }
+    .hero-image img { max-width: 280px; }
+    
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 70px; /* Adjust based on navbar height */
+        right: 0;
+        background-color: var(--background-color);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .nav-links.active {
+        display: flex;
+    }
+    .nav-links li {
+        text-align: center;
+        padding: 15px 0;
+        width: 100%;
+    }
+    .hamburger {
+        display: block;
+    }
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+    }
+}
+
+/* ==============================================
+   Visual Flowchart Section - قسم الهيكلية البصري
+   ============================================== */
+/* ... (The CSS for the flowchart remains the same as the previous version) ... */
+.flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.flow-step {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.flow-card {
+    width: 80%;
+    max-width: 500px;
+    padding: 20px 30px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    position: relative;
+}
+
+.flow-card i {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.flow-card h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.5rem;
+}
+
+.flow-card span {
+    font-size: 0.9rem;
+    color: #607D8B;
+}
+.flow-card p {
+    margin-top: 10px;
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+/* Card Specific Styles */
+.admin-level { background-color: #fff; border-top: 4px solid var(--brand-dark-text); }
+.admin-level i { color: var(--brand-dark-text); }
+
+.group-level { background-color: var(--brand-beige-bg); border-top: 4px solid var(--brand-teal); }
+.group-level i { color: var(--brand-teal); }
+
+.drive-level { background-color: #e3f2fd; border-top: 4px solid #1e88e5; } /* Light Blue */
+.drive-level i { color: #1e88e5; }
+
+.user-level { background-color: #e8f5e9; border-top: 4px solid #43a047; } /* Light Green */
+.user-level i { color: #43a047; }
+
+
+/* Connector Style */
+.flow-connector {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 15px 0;
+    color: #90A4AE;
+}
+
+.flow-connector i {
+    font-size: 2.5rem;
+}
+
+.flow-connector span {
+    font-size: 0.9rem;
+    font-weight: 500;
+    background-color: #eceff1;
+    padding: 2px 10px;
+    border-radius: 20px;
+}
+
+/* Group & Drive Examples */
+.group-examples, .drive-examples {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.group-pill {
+    background-color: #e0f2f1;
+    color: var(--brand-teal-dark);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid var(--brand-teal);
+}
+.group-pill.small {
+    padding: 5px 10px;
+    font-size: 0.8rem;
+}
+
+.drive-examples {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.drive-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    width: 80%;
+    max-width: 500px;
+}
+.drive-item .drive-name {
+    flex-grow: 1;
+    text-align: right;
+    font-weight: 700;
+    color: #1e88e5;
+}
+.drive-item .bx-left-arrow-alt {
+    color: #90A4AE;
+    font-size: 1.5rem;
+}
+/* Explanation Pills */
+.explanation-pills {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.explanation-pills .pill {
+    flex-basis: 30%;
+    min-width: 280px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: var(--brand-beige-bg);
+    border: 1px solid var(--border-color);
+}
+
+.explanation-pills .pill h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: var(--brand-teal-dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
